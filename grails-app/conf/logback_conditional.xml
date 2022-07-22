@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property resource="application.properties" />
+    <property name="logFormat" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{0} - %msg%n" />
+    <property name="currentEnv" value="${appEnv}"/>
+
+    <if condition='property("currentEnv").equalsIgnoreCase("DEVELOPMENT")'>
+        <then>
+            <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>${logFormat}</pattern>
+                </encoder>
+            </appender>
+
+            <root level="error">
+                <appender-ref ref="STDOUT" />
+            </root>
+        </then>
+        <else>
+            <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                <file>logs/${currentEnv}.log</file>
+                <append>true</append>
+                <immediateFlush>true</immediateFlush>
+                <encoder>
+                    <pattern>${logFormat}</pattern>
+                </encoder>
+            </appender>
+
+            <root level="error">
+                <appender-ref ref="FILE" />
+            </root>
+        </else>
+    </if>
+
+
+    <logger name="wood.mike" level="info" />
+
+</configuration>

@@ -3,13 +3,15 @@
     <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
         <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
             <driverClass>org.h2.Driver</driverClass>
-            <url>jdbc:h2:mem:logDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE</url>
+            <url>jdbc:h2:mem:loggingDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE</url>
             <user>sa</user>
             <password></password>
         </connectionSource>
     </appender>
 
-    <root level="DEBUG" >
+    <logger name="wood.mike" level="info" />
+
+    <root level="info" >
         <appender-ref ref="DB" />
     </root>
 </configuration>

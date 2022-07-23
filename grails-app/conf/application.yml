@@ -142,11 +142,16 @@ environments:
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
+dataSources:
+    loggingDs:
+        dbCreate: create-drop
+        url: jdbc:h2:mem:loggingDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+
 logging:
-    config: "classpath:logback_console.xml"
+    #config: "classpath:logback_console.xml"
     #config: "classpath:logback_file.xml"
     #config: "classpath:logback_rolling_time.xml"
     #config: "classpath:logback_rolling_fixedwindow.xml"
     #config: "classpath:logback_console_and_file.xml"
     #config: "classpath:logback_conditional.xml"
-    #config: "classpath:logback_database.xml"     #not complete
+    config: "classpath:logback_database.xml"
